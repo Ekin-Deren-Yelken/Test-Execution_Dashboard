@@ -1,0 +1,47 @@
+==========================================
+      Test Execution Dashboard Tests
+==========================================
+
+[Upload & Table Display]
+✔ Upload a valid CSV file
+   → Data appears in the table with correct file name
+✔ Upload a file with extra columns
+   → The last column (Errors) says "Extra columns detected"
+✔ Upload a file with missing values
+   → The last column (Errors) says "Missing required fields"
+✔ Upload an empty file
+   → Error message: "No valid data found"
+✔ Upload the same file twice
+   → Error message: "File already uploaded"
+✔ Try to edit a table cell
+   → Cells should be uneditable
+
+[Filtering & Sorting]
+✔ Click a file name in the dropdown
+   → The table filters to show only data from that file
+✔ Select "All Files" in the dropdown
+   → The table resets to show all uploaded test results
+✔ Click "Remove File Data" for a file
+   → All rows from that file are deleted, and the dropdown removes the file
+✔ Try to remove "All Files"
+   → Error message: "Select a specific file to remove."
+✔ Check "Show only Failed tests"
+   → Table filters to show only rows where status is "Fail"
+✔ Check "Execution time > 2s"
+   → Table filters to show only tests where execution time is greater than 2s
+✔ Check both "Fail" and "Execution time > 2s"
+   → Table filters to tests that are both failed and have execution time >2s
+✔ Uncheck all filters
+   → The table resets to show all results
+
+[Table Clearing]
+✔ Click "Clear Table"
+   → All rows are removed, and files can be re-uploaded
+
+[Exporting]
+✔ Click "Export CSV"
+   → The file dialog appears and a valid CSV file is saved
+✔ Click "Export JSON"
+   → The file dialog appears and a valid JSON file is saved
+✔ Try to export when the table is empty
+   → Error message: "No data to export."

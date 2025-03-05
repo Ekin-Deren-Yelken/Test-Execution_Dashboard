@@ -1,0 +1,90 @@
+// Add the following code to pom.xml 
+
+// TestNG
+/*
+ *     <!-- TestNG for unit testing -->
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>7.4.0</version>
+        <scope>test</scope>
+    </dependency>
+ */
+
+// Maven
+  /*
+  * Add the following outside of plugin managment in pom.xml
+      <!-- Move exec-maven-plugin outside pluginManagement -->
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>java</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <mainClass>com.example.TestExecutionDashboard</mainClass>
+            </configuration>
+        </plugin>
+    </plugins>
+  */
+
+
+// Selenium
+/*
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.4.0</version>
+    </dependency>
+
+*/
+
+// JFreeChart
+/*
+<dependency>
+    <groupId>org.jfree</groupId>
+    <artifactId>jfreechart</artifactId>
+    <version>1.5.3</version>
+</dependency>
+
+
+
+*/
+
+  execute mvn test in the TESTNGProject Folder
+
+
+  runa single test: mvn -Dtest=CSVParserTest test
+
+
+
+Summary of Issues and Fixes
+
+1. Pie Chart Not Appearing
+   - Issue: updateChart() was exiting early because chartFrame was not visible when called.
+   - Fix: Called updateChart() after chartFrame.setVisible(true).
+
+2. Extra White Panel Blocking Pie Chart
+   - Issue: chartFrame had an extra default content pane that overlapped the pie chart.
+   - Fix: Used chartFrame.setContentPane(new JPanel(new BorderLayout())) to remove the extra panel.
+
+3. Pie Chart Not Updating
+   - Issue: updateChart() was creating a new dataset instead of updating the existing chart.
+   - Fix: Ensured chartPanel.setChart(this.chart); properly updated the displayed chart.
+
+4. Pie Chart Not Resizing Properly
+   - Issue: Chart was not adjusting to the frame size.
+   - Fix: Used chartPanel.setPreferredSize(new Dimension(600, 500)); and chartFrame.revalidate();.
+
+5. Added Additional Graphs
+   - Bar Chart (Average Execution Time per Test): Displays the average execution time for each test.
+   - Line Chart (Execution Time Trend): Tracks execution times across multiple test runs.
+   - Fix: Created a new frame for additional charts and ensured dynamic updates.
+
+Now, all charts appear correctly, update dynamically, and resize properly.

@@ -1,0 +1,3 @@
+LoginTest,Pass,2.1s
+CheckoutTest,Fail,3.4s
+SearchTest,Pass,1.7s
